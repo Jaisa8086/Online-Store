@@ -1,0 +1,137 @@
+CREATE TABLE customers(
+  customerid INT PRIMARY KEY,
+  firstname VARCHAR(50) NOT NULL,
+  lastname VARCHAR(50) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL
+  
+);
+ 
+ CREATE TABLE orders (
+   orderid INT PRIMARY KEY,
+   customerid INT NOT NULL,
+   orderdate DATE NOT NULL,
+   total_amt DECIMAL(10,2),
+   FOREIGN KEY (customerid) REFERENCES customers(customerid)
+  
+);
+
+INSERT INTO customers (customerid, firstname, lastname, email)
+VALUES
+(1, 'John', 'Doe', 'john.doe@example.com'),
+(2, 'Jane', 'Smith', 'jane.smith@example.com'),
+(3, 'Alice', 'Johnson', 'alice.johnson@example.com');
+
+INSERT INTO orders (orderid, customerid, orderdate, total_amt)
+VALUES
+(101, 1, '2024-12-10', 250.75),
+(102, 2, '2024-12-11', 120.00),
+(103, 1, '2024-12-12', 300.50);
+
+INSERT INTO customers (customerid, firstname, lastname, email)
+VALUES
+(4, 'Jamie', 'Knowles', 'jhknowles05@gmail.com'),
+(5, 'Isai', 'Sanchez', 'isaisanchez1980@gmail.com'),
+(6, 'Matthew', 'Diaz', 'mrmtheartist@gmail.com'),
+(7, 'Carmen', 'Martinez', 'carmen.martinez@gmail.com');
+
+INSERT INTO orders (orderid, customerid, orderdate, total_amt)
+VALUES
+(104, 4, '2024-12-10', 300.24),
+(105, 5, '2024-12-11', 245.67),
+(106, 6, '2024-12-12', 389.90),
+(107, 7, '2024-12-15', 432.77);
+
+INSERT INTO customers (customerid, firstname, lastname, email)
+VALUES
+(8, 'Bob', 'Hope', 'b.hope@email.com'),
+(9, 'Nancy', 'Botwin', 'n.botwin@email.com'),
+(10, 'Shane', 'Botwin', 's.botwin@email.com');
+
+ALTER TABLE customers
+ADD COLUMN phone_number VARCHAR(15),
+ADD COLUMN signup_date DATE;
+
+ALTER TABLE orders
+ADD COLUMN shipping_address VARCHAR(255),
+ADD COLUMN order_status VARCHAR(50);
+
+UPDATE customers
+SET phone_number = '123-456-7890', signup_date = '2024-01-20'
+WHERE customerid = 1;
+
+UPDATE customers
+SET phone_number = '987-123-4567', signup_date = '2024-02-25'
+WHERE customerid = 2;
+
+UPDATE customers
+SET phone_number = '555-789-1234', signup_date = '2024-03-05'
+WHERE customerid = 3;
+
+UPDATE customers
+SET phone_number = '333-444-5555',
+signup_date = '2024-04-10'
+WHERE customerid = 4;
+
+UPDATE customers
+SET phone_number = '888-999-0000',
+signup_date = '2024-05-15'
+WHERE customerid = 5;
+
+UPDATE customers
+SET phone_number = '444-555-6666', signup_date = '2024-06-20'
+WHERE customerid = 6;
+
+UPDATE customers
+SET phone_number = '222-333-4444', signup_date = '2024-07-10'
+WHERE customerid = 7;
+
+UPDATE customers
+SET phone_number = '666-777-8888', signup_date = '2024-08-01'
+WHERE customerid = 8;
+
+UPDATE customers
+SET phone_number = '111-222-3333', signup_date = '2024-09-25'
+WHERE customerid = 9;
+
+UPDATE customers
+SET phone_number = '777-888-9999', signup_date = '2024-10-30';
+
+UPDATE orders
+SET shipping_address = '123 Elm St, Springfield', order_status = 'shipped'
+WHERE orderid = 101;
+
+UPDATE orders
+SET shipping_address = '456 Oak St, Springfield', order_status = 'pending'
+WHERE orderid = 102;
+
+UPDATE orders
+SET shipping_address = '789 Pine St, Springfield', order_status = 'delivered'
+WHERE orderid = 103;
+
+UPDATE orders
+SET shipping_address = '321 Maple St, Springfield', order_status = 'shipped'
+WHERE orderid = 104;
+
+UPDATE orders
+SET shipping_address = '654 Birch St, Springfield', order_status = 'pending'
+WHERE orderid = 105;
+
+UPDATE orders
+SET shipping_address = '987 Cedar St, Springfield', order_status = 'delivered'
+WHERE orderid = 106;
+
+UPDATE orders
+SET shipping_address = '555 Willow St, Springfield', order_status = 'shipped'
+WHERE orderid = 107;
+
+INSERT INTO customers (customerid, firstname, lastname, email, phone_number, signup_date)
+VALUES
+(11, 'Stevie', 'Botwin', 'st.botwin@email.com', 444-444-4444, '2024-01-01'),
+(12, 'Silas', 'Botwin', 'silas.botwin@email.com', 555-555-5555, '2024-01-10'),
+(13, 'Andy', 'Botwin', 'a.botwin@email.com', 777-777-7878, '2024-01-01');
+
+INSERT INTO orders (orderid, customerid, orderdate, total_amt, shipping_address, order_status)
+VALUES
+(108, 11, '2024-12-01', 567.84, '444 Pine Cone Dr, Atlanta', 'pending'),
+(109, 12, '2024-12-10', 668.90, '234 Palm St, Marietta', 'delivered'),
+(110, 13, '2024-12-13', 900.10, '321 Canabis Ln, Woodstock', 'shipped');
